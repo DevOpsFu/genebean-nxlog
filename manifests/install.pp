@@ -2,6 +2,7 @@
 class nxlog::install (
   $ensure_setting = $::nxlog::ensure_setting,
   $package_name   = $::nxlog::package_name,
+  $package_source = $::nxlog::package_source,
   ) {
   case $::kernel {
     'Linux'   : {
@@ -11,9 +12,18 @@ class nxlog::install (
     }
 
     'Windows' : {
-      package { $package_name:
-        ensure   => $ensure_setting,
-        provider => 'chocolatey',
+      if $package_source {
+        package { $package_name:
+          ensure   => $ensure_setting,
+          source   => $package_source,
+          provider => 'windows',
+        }
+      }
+      else {
+        package { $package_name:
+          ensure   => $ensure_setting,
+          provider => 'chocolatey',
+        }
       }
     } # end Windows
 
