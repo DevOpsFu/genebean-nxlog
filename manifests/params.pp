@@ -14,6 +14,7 @@ class nxlog::params {
   $output_file_path            = undef
   $output_module               = undef
   $output_port                 = undef
+  $output_cafile               = undef
   $package_name                = $::kernel ? {
     'Linux'   => 'nxlog-ce',
     'Windows' => 'nxlog',

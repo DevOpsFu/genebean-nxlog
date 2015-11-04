@@ -22,7 +22,20 @@ define nxlog::config::output (
   $output_execs     = $::nxlog::output_execs,
   $output_file_path = $::nxlog::output_file_path,
   $output_module    = $::nxlog::output_module,
-  $output_port      = $::nxlog::output_port,) {
+  $output_port      = $::nxlog::output_port,
+  $output_cafile    = $::nxlog::output_cafile,
+  ) {
+
+  $output_cafile_path = undef
+  
+  if ($output_cafile) {
+    $output_cafile_path = "${::nxlog_root}/cert/output_${name}_CACert.cer"
+
+    file {$output_cafile_path:
+      ensure => file,
+      source => $output_cafile,
+    }
+  }
 
   concat::fragment { "output_${name}":
     target  => "${conf_dir}/${conf_file}",

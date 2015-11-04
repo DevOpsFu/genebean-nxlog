@@ -14,4 +14,7 @@
   Exec        <%= "#{exec};" -%>
     <%- end -%>
   <%- end %>
+  <%- if @output_cafile -%>
+  CAFile      <%= @output_cafile_path %>
+  <%- end %>
 </Output>
