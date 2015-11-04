@@ -26,8 +26,6 @@ define nxlog::config::output (
   $output_cafile    = $::nxlog::output_cafile,
   ) {
 
-  $output_cafile_path = undef
-  
   if ($output_cafile) {
     $output_cafile_path = "${::nxlog_root}/cert/output_${name}_CACert.cer"
 
