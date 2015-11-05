@@ -36,7 +36,7 @@ class nxlog (
   if ($nxlog_root) {
     validate_absolute_path($nxlog_root)
 
-    $cert_path = $::kernel ? {
+    cert_path = $::kernel ? {
       'Linux'   => "${nxlog_root}/cert/",
       'Windows' => "${nxlog_root}\\cert\\",
     }
