@@ -5,7 +5,6 @@
 class nxlog (
   $conf_dir                    = $::nxlog::params::conf_dir,
   $conf_file                   = $::nxlog::params::conf_file,
-  $cert_path                   = $::nxlog::params::cert_path,
   $ensure_setting              = $::nxlog::params::ensure_setting,
   $ext_module                  = $::nxlog::params::ext_module,
   $ext_options                 = $::nxlog::params::ext_options,
@@ -35,11 +34,6 @@ class nxlog (
 ) inherits ::nxlog::params {
   if ($nxlog_root) {
     validate_absolute_path($nxlog_root)
-
-    cert_path = $::kernel ? {
-      'Linux'   => "${nxlog_root}/cert/",
-      'Windows' => "${nxlog_root}\\cert\\",
-    }
   }
   validate_absolute_path($conf_dir)
   validate_string($conf_file)
