@@ -23,6 +23,7 @@ class nxlog::install (
         package { $package_name:
           ensure   => $ensure_setting,
           provider => 'chocolatey',
+          install_options => ['-installArgs', '"', '/VERYSILENT', '/NORESTART', '"'],
         }
       }
     } # end Windows
